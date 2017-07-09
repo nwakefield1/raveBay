@@ -3,4 +3,6 @@ def profile():
     fname = auth.user.first_name
     lname = auth.user.last_name
     email = auth.user.email
-    return dict(fname=fname, lname=lname, email=email)
+    ptext = auth.user.profiletext
+    pmage = auth.user.profileimage
+    return dict(fname=fname, lname=lname, email=email, ptext=ptext, pmage=pmage)
