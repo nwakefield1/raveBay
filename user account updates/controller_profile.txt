@@ -1,0 +1,6 @@
+@auth.requires_login()
+def profile():
+    fname = auth.user.first_name
+    lname = auth.user.last_name
+    email = auth.user.email
+    return dict(fname=fname, lname=lname, email=email)
