@@ -1,8 +1,25 @@
 {{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}} >
 {{extend 'layout.html'}}
 
+<head>
+<style>
+    body {
+        background-color: lightblue;
+    }
+
+    center{
+        text-align: center;
+    }
+</style>
+</head>
+
+<center>
+    
 <h2><u> My Profile </u></h2>
 
 <b>Name:</b> {{=fname}} {{=lname}}<br>
 <b>Email:</b> {{=email}}<br>
 <b>Contact information:</b> <i>implement after splitting the database</i>
+<br><br>
+
+</center>
