@@ -1,0 +1,31 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}} >
+{{extend 'layout.html'}}
+
+<head>
+    <h1><center>
+    this is profile.html </center>
+</h1>
+<style>
+    body {
+        background-color: lightblue;
+    }
+
+    center{
+        text-align: center;
+    }
+</style>
+</head>
+
+<center>
+    
+<h2><u> My Profile </u></h2>
+<img width="300px"src="{{=URL('download', args=pmage)}}" />
+<p>
+    
+    <b>Name:</b> {{=fname}} {{=lname}}<br>
+<b>Email:</b> {{=email}}<br>
+<b>Contact information:</b> <i>implement after splitting the database</i>
+<br><br>
+<b>Additional information:</b> {{=ptext}}
+    </p><
+</center>
