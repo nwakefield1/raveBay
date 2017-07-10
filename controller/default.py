@@ -17,7 +17,7 @@ def add():
     tsv_with_hidden_cols=False)
 
     return dict(grid=grid)
-    
+@auth.requires_login()    
 def view():
 	# Function to view a listing
 		p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
