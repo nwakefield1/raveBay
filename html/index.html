@@ -1,0 +1,23 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+
+{{block header}}
+    <header class="background">
+      <div class="jumbotron text-center">
+        <h1>raveBay</h1>
+      </div>
+    </header>
+{{end}}
+
+{{if 'message' in globals():}}
+
+
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
+
+{{block right_sidebar}}
+
+{{end}}

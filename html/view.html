@@ -1,0 +1,91 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+<head>
+<style>
+div.container {
+	width: 100%;
+
+}
+
+header, footer {
+	background-color: #D3D3D3;
+	clear: left;
+	text-align: center;
+}
+
+nav1 {
+	float: left;
+	max-width: 160px;
+	margin: 0;
+	padding: 1em;
+}
+
+nav1 ul {
+	list-style-type: none;
+	padding: 0;
+}
+   
+nav1 ul a {
+	text-decoration: none;
+}
+
+article {
+	margin-left: 450px;
+	border-left: 1px solid gray;
+	padding: 1em;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+
+	 <h1>{{=p.title}}</h1>
+
+	
+<nav1>
+	<ul>
+		<li>
+		<img width="400px"
+		     src="{{=URL('download', args=p.image)}}" />
+		</li>
+	</ul>
+</nav1>
+<font size="4">
+<article>
+	
+
+	<p> This {{=p.title}} was offered by <a href="#">{{=p.name}}</a></p> 
+   <p>  You can reach the seller:</p> 
+    <p> phone number: {{=p.phone}}</p> 
+	<p> Email address: {{=p.email}}</p> 
+	
+	
+	<p> This was posted on: {{=p.date_posted}}</p> 
+	
+	
+	<p> 
+	{{if p.sold:}}
+	<font  color="red">
+	The tickets is not avaliable
+	</font>
+	{{else:}}
+	<font  color="green">
+	The tickets is still avaliable
+	</font>
+	{{pass}}</p> 
+	
+	<p> Description: {{=p.messeged}}</p> 
+	
+	</font>
+
+</article>
+
+
+</div>
+
+</body>
+
+{{=button}}
