@@ -1,23 +1,194 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
-{{extend 'layout.html'}}
+{{left_sidebar_enabled=False,right_sidebar_enabled=False,('message' in globals())}}
 
+{{extend "layout.html"}}
 {{block header}}
-    <header class="background">
+<header class="background">
       <div class="jumbotron text-center">
         <h1>raveBay</h1>
       </div>
-    </header>
+</header>
 {{end}}
 
-{{if 'message' in globals():}}
+{{block center}}
+<html>
+    <h3 style="text-align:center;">
+        Upcoming Events
+    </h3>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing:border-box}
+body {font-family: Verdana,sans-serif;margin:0}
+.mySlides {display:none}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 500px;
+  max-height: 600px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 10s;
+}
 
 
-{{elif 'content' in globals():}}
-{{=content}}
-{{else:}}
-{{=BEAUTIFY(response._vars)}}
-{{pass}}
+@keyframes fade {
+  from {opacity: .6}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+    <a href = https://www.facebook.com/events/354721938257173/> <img src="https://image-ticketfly.imgix.net/00/02/61/26/12-og.jpg?w=500&h=500" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+    <a href = https://www.facebook.com/events/1387528037975340/?ref=br_rs&acontext=%7B%22action_history%22%3A%22null%22%7D> <img src="http://hardfest.manufactur.co/wp-content/uploads/2016/04/hsmf17_social_Green_1080x1350-560x700.png" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+    <a href = https://www.facebook.com/events/1969620869937501/?ref=br_rs> <img src="https://cdn-assets.insomniac.com/styles/event_detail_image/s3/gud_vibrations_2017_an_ins_blogroll_700x430_r01.jpg?itok=LREOHqmL" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+    <a href = https://www.facebook.com/events/1297309030386072/?acontext=%7B%22action_history%22%3A%22[%7B%5C%22surface%5C%22%3A%5C%22page%5C%22%2C%5C%22mechanism%5C%22%3A%5C%22page_upcoming_events_card%5C%22%2C%5C%22extra_data%5C%22%3A[]%7D]%22%2C%22has_source%22%3Atrue%7D> <img src="https://cdn-assets.insomniac.com/nocturnal_wonderland_2017_line_up_social_assets_1080x1080_v01_r03-web.jpg" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+    <a href = https://www.facebook.com/events/1860247947569815/> <img src="https://cdn-assets.insomniac.com/styles/event_detail_image/s3/700x430-troyboi.png?itok=rgdeN-gA
+" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+    <a href = https://www.facebook.com/events/308023262908078/?ref=br_rs&acontext=%7B%22action_history%22%3A%22null%22%7D> <img src="https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/1_ngnypr25/def_height/1350/def_width/2578/version/100011/type/2/q/100" style="width:100%"></a>
+</div>
+
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+  <span class="dot" onclick="currentSlide(6)"></span>
+
+</div>
+
+<script>
+'use strict';
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  //alert('showslides('+ n +')\nslideIndex='+slideIndex);
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n==undefined){n = ++slideIndex}
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  
+  setTimeout(showSlides, 10000); // Change image every 5 seconds
+}
+</script>
+
+</body>
+    </html>
+{{end}}
+
+{{block left_sidebar}}
+<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=ravebaycmps115%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FLos_Angeles" style="border-width:0" width="450" height="500" frameborder="0" scrolling="no"></iframe>
+{{end}}}
+
 
 {{block right_sidebar}}
-
+<div class="panel panel-info">
+  <div class="panel-body">
+    {{=T("Other Resources")}}
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">{{=A(T("Top DJs"), _href=('https://djmag.com/top100djs'))}}</li>
+    <li class="list-group-item"><a href="http://lmgtfy.com/?q=Whats+a+rave%3F">What's a Rave</a></li>
+    <li class="list-group-item"><a href="http://lmgtfy.com/?q=Where+can+i+buy+rave+tickets%3F">{{=T('Where can I buy tickets from a actual seller')}}</a></li>
+    <li class="list-group-item"><a href="http://www.di.fm/">{{=T('Listen With us')}}</a></li>
+  </ul>
+</div>
 {{end}}

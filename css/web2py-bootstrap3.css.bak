@@ -106,6 +106,8 @@ select.autocomplete {
 }
 .background {
     background: url(http://wallpapercave.com/wp/UGDiqyb.jpg) no-repeat center center;
+    width: 1440px;
+    height: 1440px;
 }
 body {
     padding-top: 60px;
