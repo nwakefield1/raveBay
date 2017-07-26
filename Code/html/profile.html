@@ -1,0 +1,79 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,('message' in globals())}}
+
+{{extend "layout.html"}}
+
+{{block center}}
+<style>
+
+</style>
+<h1>
+    <u>{{=p.first_name}}'s Profile</u>
+</h1>
+
+<html>
+    <head>
+        <style>
+            div.reviews{
+                background-color: grey;
+                color: black;
+                padding: 25px;
+            }
+
+        </style>
+    </head>
+    <body>
+                <form><input type="hidden" id="id" name="id" value="" /></form>
+                Likes: <span id="p{{=p.id}}">{{=p.votes}} </span>
+                <span onclick="jQuery('#id').val('{{=p.id}}');
+                       ajax('{{=URL('default', 'voteProfile')}}', ['id'], 'p{{=p.id}}');"> <img src="http://www.freeiconspng.com/uploads/youtube-like-png-28.png" width="40" height="30" > </span>
+        <br>
+        {{=button}}
+        <br><br>
+
+        <div class="col-md-6 ">
+            <div class="reviews">
+                <font size = "5">{{=T("My Reviews")}}</font>
+                <br>
+                {{for i in range(size):}}
+                <br>
+                    <li class="list-group-item">
+                        <b>{{=r[i].author_name}}</b> &nbsp&nbsp&nbsp <font size = "1"></font>
+                        <dd>{{=r[i].reviews}}</dd>
+
+                    </li>
+                {{pass}}
+
+        </div>
+        </div>
+    </body>
+</html>
+{{end}}
+
+
+
+{{block left_sidebar}}
+<head>
+
+   <img width="200px"src="{{=URL('download', args=p.profileimage)}}" />
+
+    
+    </head>
+<body>
+    <p>
+        <b>Name:</b> {{=p.first_name}} {{=p.last_name}}<br>
+        <b>Email:</b> {{=p.email}}<br></i>
+        <b></b>
+        <br><br>
+        <b>Additional information:</b> {{=p.profiletext}}
+    </p>
+</body>
+{{end}}
+
+
+{{block right_sidebar}}
+<html>
+<div class="col-md-3">
+asdffffffffffffffffffffffffffffffffff
+</div>
+    </html>
+{{end}}

@@ -80,22 +80,19 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # (more options discussed in gluon/tools.py)
 # -------------------------------------------------------------------------
 
-from gluon.tools import Auth, Service, PluginManager
-
+from gluon.tools import Auth, Service, PluginManager, Mail, Crud, prettydate
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, host_names=myconf.get('host.names'))
 service = Service()
 plugins = PluginManager()
-
-# -------------------------------------------------------------------------
-# create all tables needed by auth if not custom tables
-# -------------------------------------------------------------------------
+crud = Crud(db)
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables
 # -------------------------------------------------------------------------
 auth.settings.extra_fields['auth_user']=[
     Field('profiletext','text'),
-    Field('profileimage','upload'),
+    Field('profileimage','upload', default='static/images/profile_default.png'),
+    Field('votes', 'integer', default=0),
     ]
 auth.define_tables(username=False, signature=False)
 
@@ -117,9 +114,31 @@ auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 
 # -------------------------------------------------------------------------
-# Tables defined below
+# Define your tables below (or better in another model file) for example
+#
+# >>> db.define_table('mytable', Field('myfield', 'string'))
+#
+# Fields can be 'string','text','password','integer','double','boolean'
+#       'date','time','datetime','blob','upload', 'reference TABLENAME'
+# There is an implicit 'id integer autoincrement' field
+# Consult manual for more options, validators, etc.
+#
+# More API examples for controllers:
+#
+# >>> db.mytable.insert(myfield='value')
+# >>> rows = db(db.mytable.myfield == 'value').select(db.mytable.ALL)
+# >>> for row in rows: print row.id, row.myfield
 # -------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+# after defining tables, uncomment below to enable auditing
+# -------------------------------------------------------------------------
+# auth.enable_record_versioning(db)
+crud.settings.auth = None
+
+
 from datetime import datetime
+
 
 # function to get the name of the user and put it in the table
 def first_name():
@@ -134,41 +153,58 @@ def get_email():
     if auth.user:
         email = auth.user.email
     return email
- 
-# define the table we will be using
+
+# define data access layer for reviews
+reviewsdb = DAL('sqlite://storage.sqlite',
+                auto_import=True
+               )
+
+# define the listing table we will be using
 db.define_table('listing',
                 Field('title'),
                 Field('price', 'decimal(6,2)'),
                 Field('sold', 'boolean'),
-                Field('image', 'upload'),
+                Field('image', 'upload',default='static/images/No_image.png'),
                 Field('name'),
                 Field('user_id', db.auth_user),
                 Field('phone'),
                 Field('email'),
+                Field('votes', 'integer', default=0),
                 Field('messeged', 'text'),
                 Field('date_posted', 'datetime'),
-                Field('account_info', 'text'),
                 )
 
+# define the message table we will be using
+db.define_table('private_messages',
+                Field('fromid', db.auth_user, default=auth.user_id, readable=False, writable=False),
+                Field('toid', db.auth_user, readable=False),
+                Field('timesent', 'datetime', default=request.now, readable=False, writable=False),
+                Field('subject', 'string', length=255),
+                Field('messages','text'),
+                Field('opened', 'boolean', writable=False, readable=False, default=False),
+                Field('timeopened', 'datetime', readable=False, writable=False),
+               )
+
+#db.private_messages.toid.requires=IS_IN_DB(db, db.auth_user.id, '%(name)s')
+
+# sets read / write priveleges
+db.listing.votes.writable = False
+db.listing.votes.readable = False
 db.listing.user_id.writable = False
 db.listing.user_id.readable = False
 db.listing.name.writable = False
 db.listing.date_posted.writable = False
 db.listing.email.writable = False
 
-db.listing.category.required = True
-
 db.listing.sold.default = False
 
-db.listing.messeged.label = 'Message'
+db.listing.messeged.label = 'Description'
 db.listing.name.default = first_name()
 db.listing.date_posted.default = datetime.utcnow()
 db.listing.user_id.default = auth.user_id
 db.listing.email.default = get_email()
-db.listing.category.requires = IS_IN_SET(CATEGORY, zero = None)
-db.listing.category.default = 'Misc'
 
-# to check for proper price numbermesseged 
+# to check for proper price numbermesseged
 db.listing.price.requires = IS_DECIMAL_IN_RANGE(0, 100000.00, dot=".")
 #error_message='The price should be in the range 0..100000.00')
 

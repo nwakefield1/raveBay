@@ -42,44 +42,48 @@ article {
 <div class="container">
 
 
-	 <h1>{{=p.title}}</h1>
+	 <h1>{{=p.title}} - ${{=p.price}}</h1>
 
 	
 <nav1>
 	<ul>
 		<li>
-		<img width="400px"
-		     src="{{=URL('download', args=p.image)}}" />
+          
+ 
+
+     <img width="400px"src="{{=URL('download', args=p.image)}}" />
+		
 		</li>
 	</ul>
 </nav1>
 <font size="4">
 <article>
-	
 
-	<p> This {{=p.title}} was offered by <a href="#">{{=p.name}}</a></p> 
-   <p>  You can reach the seller:</p> 
-    <p> phone number: {{=p.phone}}</p> 
-	<p> Email address: {{=p.email}}</p> 
+
+    <p> seller: {{=p.name}}</p> 
+    <p> phone: {{=p.phone}}</p> 
+	<p> email: {{=p.email}}</p> 
 	
-	
-	<p> This was posted on: {{=p.date_posted}}</p> 
-	
-	
+<form><input type="hidden" id="id" name="id" value="" /></form>
+                Likes: <span id="p{{=p.id}}">{{=p.votes}} </span>
+                <span onclick="jQuery('#id').val('{{=p.id}}');
+                       ajax('{{=URL('default', 'vote')}}', ['id'], 'p{{=p.id}}');"> <img src="http://www.freeiconspng.com/uploads/youtube-like-png-28.png" width="40" height="30" > </span>
+	<p> </p> 
+	<p> Description: {{=p.messeged}}</p> 
+    
 	<p> 
 	{{if p.sold:}}
 	<font  color="red">
-	The tickets is not avaliable
+	Sorry, this has been sold
 	</font>
 	{{else:}}
 	<font  color="green">
-	The tickets is still avaliable
+	This is still avaliable!
 	</font>
 	{{pass}}</p> 
-	
-	<p> Description: {{=p.messeged}}</p> 
-	
 	</font>
+    
+    	<p> posted on: {{=p.date_posted}}</p> 
 
 </article>
 

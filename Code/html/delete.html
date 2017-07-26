@@ -1,0 +1,93 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+<head>
+<style>
+div.container {
+	width: 100%;
+
+}
+
+header, footer {
+	background-color: #D3D3D3;
+	clear: left;
+	text-align: center;
+}
+
+nav1 {
+	float: left;
+	max-width: 160px;
+	margin: 0;
+	padding: 1em;
+}
+
+nav1 ul {
+	list-style-type: none;
+	padding: 0;
+}
+   
+nav1 ul a {
+	text-decoration: none;
+}
+
+article {
+	margin-left: 450px;
+	border-left: 1px solid gray;
+	padding: 1em;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2> Are you sure you want to delete this? </h2>
+
+	 <h1>{{=p.title}} - ${{=p.price}}</h1>
+
+	
+<nav1>
+	<ul>
+		<li>
+
+     <img width="400px"src="{{=URL('download', args=p.image)}}" />
+		
+		</li>
+	</ul>
+</nav1>
+<font size="4">
+<article>
+
+
+    <p> seller: {{=p.name}}</p> 
+    <p> phone: {{=p.phone}}</p> 
+	<p> email: {{=p.email}}</p> 
+	
+<form><input type="hidden" id="id" name="id" value="" /></form>
+                Likes: <span id="p{{=p.id}}">{{=p.votes}} </span>
+                <span onclick="jQuery('#id').val('{{=p.id}}');
+                       ajax('{{=URL('default', 'vote')}}', ['id'], 'p{{=p.id}}');"> <img src="http://www.freeiconspng.com/uploads/youtube-like-png-28.png" width="40" height="30" > </span>
+	<p> </p> 
+	<p> Description: {{=p.messeged}}</p> 
+    
+	<p> 
+	{{if p.sold:}}
+	<font  color="red">
+	Sorry, this has been sold
+	</font>
+	{{else:}}
+	<font  color="green">
+	This is still avaliable!
+	</font>
+	{{pass}}</p> 
+	</font>
+    
+    	<p> posted on: {{=p.date_posted}}</p> 
+
+</article>
+
+
+</div>
+
+</body>
+
+{{=confirm}}
