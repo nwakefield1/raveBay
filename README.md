@@ -1,5 +1,5 @@
 # raveBay
-raveBay - an online marketplace where users can buy/resell EDM event tickets
+an online marketplace where users can buy/resell EDM event tickets
 
 Some featues include:
 
