@@ -1,7 +1,7 @@
 # raveBay
-an online web app where users can buy/re-sell EDM event tickets
+An online web app where users can buy/re-sell EDM event tickets
 
-Some featues include:
+Some features include:
 
 - Ability to let users create an account
 
@@ -14,3 +14,6 @@ Some featues include:
 - “Trusted” feature where users can vouch for a seller to help prevent scamming
 
 - Review system so buyers can write reviews how their transaction went and rate them with a star system
+
+Scrumboard
+https://scrumy.com/ravebay
