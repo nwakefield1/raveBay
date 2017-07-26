@@ -5,7 +5,7 @@
 # Customize your APP title, subtitle and menus here
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.logo = A(IMG(_src=URL('static','images', 'ravvicon.png'),_alt="My Logo"), _href=URL('default','index'))
+response.logo = A(IMG(_src='https://i.imgur.com/A2LRvVK.png',_alt="My Logo",_style= "margin:20px 10px"), _href=URL('default','index'))
 response.title = request.application.replace('_', ' ').title()
 response.subtitle = ''
 # ----------------------------------------------------------------------------------------------------------------------
@@ -44,16 +44,15 @@ def _():
     ctr = request.controller
     # ------------------------------------------------------------------------------------------------------------------
     # useful links to internal and external resources
+    # Buttons and redirection for our navigation bar
     # ------------------------------------------------------------------------------------------------------------------
     response.menu += [
-             (T('Postings'), False,
-             '/raveBay/default/posting'),
-            (T('My Profile'), False,
-             '/raveBay/default/user/profile?_next=/raveBay/default/index'),
-        
-            (T('Live Chat'), False,
-             'http://webchat.freenode.net/?channels=raveBay')
-        
+        (T('Home'), False, '/init/default/'),
+        (T('Postings'), False, '/init/default/posting'),
+        (T('My Profile'), False, URL('/profile')),
+        (T('Messages'), False, URL('default','messages'),[]),
+        (T('Inbox'), False,URL('default','inbox'), []),
+        (T('Community'), False, 'http://webchat.freenode.net/?channels=raveBay')
     ]
 
 
