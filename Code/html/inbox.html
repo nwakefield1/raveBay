@@ -2,16 +2,9 @@
 {{extend 'layout.html'}}
 
 <p>
-
-<h1><center>
-</center>
-</h1>
+<h1>Inbox</h1>
 </p>
-----------------------------------------------------------------------------------------------------------<br>
-{{for i in range(size):}}
-From: {{=db.auth_user(private_messages[i].fromid).first_name}}<br>
-Subject: {{=private_messages[i].subject}} <br>
-<br>{{=private_messages[i].messages}}<br><br>
-{{=private_messages[i].timesent}}<br>
-----------------------------------------------------------------------------------------------------------<br>
+
+{{=grid}}
+
 {{pass}}

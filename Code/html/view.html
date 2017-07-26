@@ -77,7 +77,8 @@
             </p> 
     </font>
             <p>
-                {{=A('Send seller message', _class='btn btn-default', _href=URL('default', 'messages'))}}
+                {{=A('Send seller a message', _class='btn btn-default', _href=URL('default', 'messages'))}}
+                {{=A('View sellers profile', _class='btn btn-default', _href=URL('default', 'profile',args=[p.user_id]))}}
             </p>
              <p>
                 {{=button}}

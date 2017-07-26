@@ -1,8 +1,9 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
-<h1>This is the default/viewmessage.html template</h1>]
-  <p> from: {{=p.fromid}}</p>
-    <p> subject: {{=p.subject}}</p>
-    <p> message: {{=p.messeges}}</p>
-    <p> sent on: {{=p.timesent}}</p>
+    <b> From:</b>    <p>{{=p.fromid.first_name}} {{=p.fromid.last_name}}</p>
+    <b> Subject:</b> <p>{{=p.subject}}</p>
+    <b> Message:</b> <p>{{=p.messages}}</p>
+    <b> Sent on:</b> <p>{{=p.timesent}}</p>
     <p>{{=A('return to inbox', _class='btn btn-default', _href=URL('default', 'inbox'))}}</p>
-{{=BEAUTIFY(response._vars)}}
+
+{{pass}}
